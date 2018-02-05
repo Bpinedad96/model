@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /Grid1
         - /RobotModel1
         - /TF1
       Splitter Ratio: 0.5
@@ -33,7 +34,7 @@ Visualization Manager:
   Class: ""
   Displays:
     - Alpha: 0.5
-      Cell Size: 1
+      Cell Size: 0.00999999978
       Class: rviz/Grid
       Color: 160; 160; 164
       Enabled: true
@@ -47,7 +48,7 @@ Visualization Manager:
         Y: 0
         Z: 0
       Plane: XY
-      Plane Cell Count: 10
+      Plane Cell Count: 1000
       Reference Frame: <Fixed Frame>
       Value: true
     - Alpha: 0.5
@@ -60,47 +61,7 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        back_left:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        back_left_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        back_right:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        back_right_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        backleft:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        backright:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_heading:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_pitch:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -115,47 +76,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        left1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left1_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left2_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         right:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right1_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right2_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -171,45 +92,13 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        back_left:
-          Value: true
-        back_left_wheel:
-          Value: true
-        back_right:
-          Value: true
-        back_right_wheel:
-          Value: true
-        backleft:
-          Value: true
-        backright:
-          Value: true
-        base_heading:
-          Value: true
         base_link:
-          Value: true
-        base_pitch:
           Value: true
         chasis:
           Value: true
         left:
           Value: true
-        left1:
-          Value: true
-        left1_wheel:
-          Value: true
-        left2:
-          Value: true
-        left2_wheel:
-          Value: true
         right:
-          Value: true
-        right1:
-          Value: true
-        right1_wheel:
-          Value: true
-        right2:
-          Value: true
-        right2_wheel:
           Value: true
       Marker Scale: 0.5
       Name: TF
@@ -218,31 +107,11 @@ Visualization Manager:
       Show Names: true
       Tree:
         base_link:
-          base_pitch:
-            base_heading:
-              chasis:
-                backleft:
-                  back_left:
-                    back_left_wheel:
-                      {}
-                backright:
-                  back_right:
-                    back_right_wheel:
-                      {}
-                left:
-                  left1:
-                    left1_wheel:
-                      {}
-                  left2:
-                    left2_wheel:
-                      {}
-                right:
-                  right1:
-                    right1_wheel:
-                      {}
-                  right2:
-                    right2_wheel:
-                      {}
+          chasis:
+            left:
+              {}
+            right:
+              {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -269,25 +138,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 4.48688984
+      Distance: 0.406011522
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 0.167784691
+        Y: -0.29841879
+        Z: -0.00543203857
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.369796544
+      Pitch: 1.29979563
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.44676256
+      Yaw: 5.95177698
     Saved: ~
 Window Geometry:
   Displays:

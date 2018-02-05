@@ -20,7 +20,7 @@
 #include <sensor_msgs/JointState.h>
 
 //Joint information
-char *joints[] = {"base_link_to_base_pitch", "base_pitch_to_base_heading", "base_heading_to_chasis", "chasis_to_right", "chasis_to_left", "chasis_to_backright", "chasis_to_backleft" };
+char *joints[] = {"base_link_to_base_pitch", "base_pitch_to_base_roll", "base_roll_to_chasis", "chasis_to_right", "chasis_to_left", "chasis_to_right2", "chasis_to_left2" };
 float positions[7];
 float pastPositionsx[10];
 float pastPositionsy[10];
