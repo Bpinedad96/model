@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot name="rover">
+
+  <material name="gray">
+    <color rgba="0.7 0.7 0.7 5"/>
+  </material>
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 2"/>
+  </material>
+  <material name="chasis">
+    <color rgba="0.4 0 0 2"/>
+  </material>
+  <material name="joint">
+    <color rgba="0.4 0 0 2"/>
+  </material>
+  
+  <link name="chasis">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/chasis.STL"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+  <link name="right">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/boogie1.STL"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+   <joint name="chasis_to_right" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="chasis"/>
+    <child link="right"/>
+    <origin xyz="0 0 0"/>
+  </joint>

@@ -1,0 +1,361 @@
+<?xml version="1.0"?>
+<robot name="rover">
+
+  <material name="gray">
+    <color rgba="0.7 0.7 0.7 5"/>
+  </material>
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 2"/>
+  </material>
+  <material name="chasis">
+    <color rgba="0.4 0 0 2"/>
+  </material>
+  <material name="joint">
+    <color rgba="0.4 0 0 2"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.0001 0.0001 0.000033"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  <link name="base_pitch">
+    <visual>
+      <geometry>
+        <box size="0.0001 0.0001 0.000033"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  <joint name="base_link_to_base_pitch" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-7" upper="7" velocity=".1"/>
+    <parent link="base_link"/>
+    <child link="base_pitch"/>
+    <origin xyz="0 0 -.000033"/>
+  </joint>
+  
+  <link name="base_heading">
+    <visual>
+      <geometry>
+        <box size="0.0001 0.0001 0.000033"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  <joint name="base_pitch_to_base_heading" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="base_pitch"/>
+    <child link="base_heading"/>
+    <origin xyz="0 0 -.000066"/>
+  </joint>
+  
+  <link name="chasis">
+    <visual>
+      <geometry>
+        <box size="0.78 0.55 0.1"/>
+      </geometry>
+      <origin xyz="0 0 0 "/>
+      <material name="chasis"/>
+    </visual>
+  </link>
+
+  <joint name="base_heading_to_chasis" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="base_heading"/>
+    <child link="chasis"/>
+    <origin xyz="0 0 -0.0001"/>
+  </joint>
+  
+  <link name="right">
+    <visual>
+      <geometry>
+        <cylinder radius="0.06" length=".01"/>
+      </geometry>
+      <origin rpy ="1.5708 0 0" xyz="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+  <link name="right1">
+    <visual>
+      <geometry>
+        <box size="0.09 0.01 0.323"/>
+      </geometry>
+      <origin rpy="0 0.6435029 0" xyz="-.07 0 -.1"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+  <link name="right2">
+    <visual>
+      <geometry>
+        <box size="0.09 0.01 0.323"/>
+      </geometry>
+      <origin rpy="0 -0.6435029 0" xyz=".07 0 -.1"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+  <link name="left">
+    <visual>
+      <geometry>
+        <cylinder radius="0.06" length=".01"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+  <link name="left1">
+    <visual>
+      <geometry>
+        <box size="0.09 0.01 0.323"/>
+      </geometry>
+      <origin rpy="0 0.6435029 0" xyz="-.07 0 -.1"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="left2">
+    <visual>
+      <geometry>
+        <box size="0.09 0.01 0.323"/>
+      </geometry>
+      <origin rpy="0 -0.6435029 0" xyz=".07 0 -.1"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+  
+  <link name="backleft">
+    <visual>
+      <geometry>
+        <cylinder radius="0.06" length=".01"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+  <link name="backright">
+    <visual>
+      <geometry>
+        <cylinder radius="0.06" length=".01"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="back_right">
+    <visual>
+      <geometry>
+        <box size="0.09 0.01 0.325"/>
+      </geometry>
+      <origin rpy="0 0.6435029 0" xyz="-0.07 0 -.1"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+  <link name="back_left">
+    <visual>
+      <geometry>
+        <box size="0.09 0.01 0.325"/>
+      </geometry>
+      <origin rpy="0 0.6435029 0" xyz="-0.07 0 -.1"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+  <link name="back_right_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length=".11"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 .055 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+  
+  <link name="back_left_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length=".11"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 -.055 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+  
+  <link name="left1_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length=".11"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0.055 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+  <link name="left2_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length=".11"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0.055 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+  <link name="right1_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length=".11"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 -.055 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+  <link name="right2_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length=".11"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 -.055 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+  
+  
+  
+  
+  //suspensions
+  
+  <joint name="chasis_to_right" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="chasis"/>
+    <child link="right"/>
+    <origin xyz="0.195 -0.28 -.05"/>
+  </joint>
+  
+  <joint name="chasis_to_left" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="chasis"/>
+    <child link="left"/>
+    <origin xyz="0.195 0.28 -.05"/>
+  </joint>
+  
+  <joint name="backright_to_back_right" type="fixed">
+    <parent link="backright"/>
+    <child link="back_right"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <joint name="backleft_to_back_left" type="fixed">
+    <parent link="backleft"/>
+    <child link="back_left"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+  
+  
+  
+  <joint name="chasis_to_backright" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="0" upper="0.6" velocity=".1"/>
+    <parent link="chasis"/>
+    <child link="backright"/>
+    <origin xyz="-0.195 0.28 -.05"/>
+  </joint>
+
+  <joint name="chasis_to_backleft" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="0" upper="0.6" velocity=".1"/>
+    <parent link="chasis"/>
+    <child link="backleft"/>
+    <origin xyz="-0.195 -0.28 -.05"/>
+  </joint>
+  
+  
+  
+  <joint name="left_to_left1" type="fixed">
+    <parent link="left"/>
+    <child link="left1"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+  
+  <joint name="left_to_left2" type="fixed">
+    <parent link="left"/>
+    <child link="left2"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+  
+  <joint name="rigth_to_right1" type="fixed">
+    <parent link="right"/>
+    <child link="right1"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+  
+  <joint name="rigth_to_right2" type="fixed">
+    <parent link="right"/>
+    <child link="right2"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+  
+  
+  
+  
+  
+  
+  
+  //wheels
+  
+  
+  <joint name="back_right_to_back_right_wheel" type="continuous">
+      <axis xyz="0 1 0"/>
+    <parent link="back_right"/>
+    <child link="back_right_wheel"/>
+    <origin xyz="-.15 0.005 -.2"/>
+  </joint>
+  
+  <joint name="back_left_to_back_left_wheel" type="continuous">
+      <axis xyz="0 1 0"/>
+    <parent link="back_left"/>
+    <child link="back_left_wheel"/>
+    <origin xyz="-.15 -0.005 -.2"/>
+  </joint>
+  
+  <joint name="left1_to_left1_wheel" type="continuous">
+      <axis xyz="0 1 0"/>
+    <parent link="left1"/>
+    <child link="left1_wheel"/>
+    <origin xyz=".15 0.005 -.2"/>
+  </joint>
+  
+  <joint name="left2_to_left2_wheel" type="continuous">
+      <axis xyz="0 1 0"/>
+    <parent link="left2"/>
+    <child link="left2_wheel"/>
+    <origin xyz="-.15 0.005 -.2"/>
+  </joint>
+  
+  <joint name="right1_to_right1_wheel" type="continuous">
+      <axis xyz="0 1 0"/>
+    <parent link="right1"/>
+    <child link="right1_wheel"/>
+    <origin xyz=".15 -0.005 -.2"/>
+  </joint>
+  
+  <joint name="right2_to_right2_wheel" type="continuous">
+      <axis xyz="0 1 0"/>
+    <parent link="right2"/>
+    <child link="right2_wheel"/>
+    <origin xyz="-.15 -0.005 -.2"/>
+  </joint>  
+
+</robot>

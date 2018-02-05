@@ -1,0 +1,6 @@
+sudo chmod ugo+rwx /dev/ttyAC
+
+roslaunch model display.launch model:=urdf/rover.urdf
+
+
+rosrun rosserial_python serial_node.py _port:=/dev/ttyACM1 _baud:=57600
