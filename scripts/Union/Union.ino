@@ -1,4 +1,4 @@
-
+//#include <i2c_t3.h>
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_LSM303_U.h>
@@ -6,14 +6,13 @@
 #include <Adafruit_10DOF.h>
 
 //Accelerometers
-#include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_LIS3DH.h>
 
 // Used for software SPI
-#define LIS3DH_CLK 13
-#define LIS3DH_MISO 12
-#define LIS3DH_MOSI 11
+#define LIS3DH_CLK 32
+#define LIS3DH_MISO 1
+#define LIS3DH_MOSI 0
 
 #include <ros.h>
 #include <std_msgs/Int16.h>
@@ -27,7 +26,7 @@ float pastPositionsy[10];
 float pastPositionsz[10];
 
 // Used for hardware & software SPI
-const int LIS3DH_CS[4] = {7,8,9,10};
+const int LIS3DH_CS[4] = {23, 22, 21, 20};
 int i = 0;
 int j = 0;
 Adafruit_LIS3DH lis[4];
@@ -40,7 +39,7 @@ ros::Publisher joint_states("joint_states", &link_state);
 /* Assign a unique ID to the sensors */
 Adafruit_10DOF                dof   = Adafruit_10DOF();
 Adafruit_LSM303_Accel_Unified accel = Adafruit_LSM303_Accel_Unified(30301);
-Adafruit_LSM303_Mag_Unified   mag   = Adafruit_LSM303_Mag_Unified(30302);
+Adafruit_LSM303_Mag_Unified   mag   = Adafruit_LSM303_Mag_Unified(30302); 
 
 /* Update this with the correct SLP for accurate altitude measurements */
 
@@ -87,6 +86,9 @@ void setpast (float pastPositions[]) {
 /**************************************************************************/
 void setup()
 {
+//Wire.begin(38, 37); // similar to above, but using SCL pin 16 and SDA pin 18  i2c_t3.setSDA(37);
+  //Wire.begin(I2C_MASTER, 0x00, 38, 37);
+
   nh.initNode();
   nh.advertise(joint_states);
   link_state.name_length = 7;
