@@ -50,14 +50,20 @@ void initSensors()
   {
     /* There was a problem detecting the LSM303 ... check your connections */
     //Serial.println(F("Ooops, no LSM303 detected ... Check your wiring!"));
-    //while (1);
+    //while (1);    
+    Serial.println("adios");
+
   }
+  else
+    Serial.println("holi1");
   if (!mag.begin())
   {
     /* There was a problem detecting the LSM303 ... check your connections */
     //Serial.println("Ooops, no LSM303 detected ... Check your wiring!");
     //while (1);
   }
+  else
+    Serial.println("holi2");
 
   for(i=0;i<4;i++){
     lis[i] = Adafruit_LIS3DH(LIS3DH_CS[i], LIS3DH_MOSI, LIS3DH_MISO, LIS3DH_CLK);
@@ -88,7 +94,7 @@ void setup()
 {
 //Wire.begin(38, 37); // similar to above, but using SCL pin 16 and SDA pin 18  i2c_t3.setSDA(37);
   //Wire.begin(I2C_MASTER, 0x00, 38, 37);
-
+      Serial.println("holi0");
   nh.initNode();
   nh.advertise(joint_states);
   link_state.name_length = 7;

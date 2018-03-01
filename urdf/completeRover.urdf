@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<robot name="rover">
+
+  <material name="gray">
+    <color rgba="0.7 0.7 0.7 5"/>
+  </material>
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 2"/>
+  </material>
+  <material name="chasis">
+    <color rgba="0.4 0 0 2"/>
+  </material>
+  <material name="joint">
+    <color rgba="0.4 0 0 2"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.0001 0.0001 0.000033"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="base_pitch">
+    <visual>
+      <geometry>
+        <box size="0.0001 0.0001 0.000033"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="base_roll">
+    <visual>
+      <geometry>
+        <box size="0.0001 0.0001 0.000033"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="base_link_to_base_pitch" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-7" upper="7" velocity=".1"/>
+    <parent link="base_link"/>
+    <child link="base_pitch"/>
+    <origin xyz="0 0 -.000033"/>
+  </joint>
+
+  <joint name="base_pitch_to_base_roll" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="base_pitch"/>
+    <child link="base_roll"/>
+    <origin xyz="0 0 -.000066"/>
+  </joint>
+  
+  <link name="chasis">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/chasis.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="-1.08 0.524 -4.175"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <joint name="base_roll_to_chasis" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="base_roll"/>
+    <child link="chasis"/>
+    <origin xyz="0 0 -0.0001"/>
+  </joint>
+  
+  <link name="right">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/boogie1.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="-0.888 0.846 -4.165"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="left">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/boogie2.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="-0.888 0.202 -4.165"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="right2">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/rocker1.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 3.1416" xyz="1.275 -0.232 -4.165"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="left2">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/rocker2.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 3.1416" xyz="1.275 -0.817 -4.165"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="stick">
+    <visual>
+      <geometry>
+        <cylinder length="0.5" radius="0.032"/>
+      </geometry>
+      <origin rpy="0 0 1.5708" xyz="0 0 0.25"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="camera">
+    <visual>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <origin xyz="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+   <joint name="chasis_to_right" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="chasis"/>
+    <child link="right"/>
+    <origin xyz="0.195 -0.282 -.012"/>
+  </joint>
+
+  <joint name="chasis_to_right2" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="chasis"/>
+    <child link="right2"/>
+    <origin xyz="-0.195 -0.312 -.012"/>
+  </joint>
+
+  <joint name="chasis_to_left" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="chasis"/>
+    <child link="left"/>
+    <origin xyz="0.195 0.282 -.012"/>
+  </joint>
+
+  <joint name="chasis_to_left2" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="chasis"/>
+    <child link="left2"/>
+    <origin xyz="-0.195 0.312 -.012"/>
+  </joint>
+
+  <joint name="rover_to_stick" type="fixed">
+    <parent link="chasis"/>
+    <child link="stick"/>
+    <origin xyz="-0.3925 0.17 0"/>
+  </joint>
+
+  <joint name="stick_to_camera" type="revolute">
+   <axis xyz="0 1 1"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="stick"/>
+    <child link="camera"/>
+    <origin xyz="0 0 0.51"/>
+  </joint>
+
+  <joint name="chasis_to_zed" type="fixed">
+    <parent link="chasis"/>
+    <child link="zed_center"/>
+    <origin xyz="0.35  0 -.015"/>
+  </joint>
+
+
+   <link name="zed_left_camera">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 1.57 0"/>
+            <geometry>
+                <cylinder radius="0.007" length=".031"/>
+            </geometry>
+            <material name="dark_grey">
+                <color rgba="0.1 0.1 0.1 1"/>
+            </material>
+        </visual>
+    </link>
+    <link name="zed_center">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://model//urdf/ZED.stl" />
+            </geometry>
+            <material name="light_grey">
+                <color rgba="0.8 0.8 0.8 2"/>
+            </material>
+        </visual>
+    </link>
+    <link name="zed_right_camera">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 1.57 0"/>
+            <geometry>
+                <cylinder radius="0.007" length=".031"/>
+            </geometry>
+            <material name="dark_grey">
+                <color rgba="0.1 0.1 0.1 1"/>
+            </material>
+        </visual>
+    </link>
+    <link name="zed_depth_camera" />
+
+    <joint name="zed_left_camera_joint" type="fixed">
+        <parent link="zed_center"/>
+        <child link="zed_left_camera"/>
+        <origin xyz="0 0.06 0" rpy="0 0 0" />
+    </joint>
+    <joint name="zed_depth_camera_joint" type="fixed">
+        <parent link="zed_left_camera"/>
+        <child link="zed_depth_camera"/>
+        <origin xyz="0 0 0" rpy="-1.5707963267948966 0 -1.5707963267948966" />
+    </joint>
+
+    <joint name="zed_right_camera_joint" type="fixed">
+        <parent link="zed_center"/>
+        <child link="zed_right_camera"/>
+        <origin xyz="0 -0.06 0" rpy="0 0 0" />
+    </joint>
+
+</robot>
