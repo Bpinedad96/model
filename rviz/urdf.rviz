@@ -5,11 +5,11 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /Status1
-        - /Grid1
         - /RobotModel1
         - /TF1
         - /Marker1
+        - /Marker1/Status1
+        - /Map1/Status1
       Splitter Ratio: 0.5
     Tree Height: 769
   - Class: rviz/Selection
@@ -138,26 +138,114 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        base_link:
+          Value: true
+        base_pitch:
+          Value: true
+        base_roll:
+          Value: true
+        camera:
+          Value: true
+        chasis:
+          Value: true
+        left:
+          Value: true
+        left2:
+          Value: true
+        right:
+          Value: true
+        right2:
+          Value: true
+        stick:
+          Value: true
+        zed_center:
+          Value: true
+        zed_depth_camera:
+          Value: true
+        zed_left_camera:
+          Value: true
+        zed_right_camera:
+          Value: true
       Marker Scale: 0.5
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        base_link:
+          base_pitch:
+            base_roll:
+              chasis:
+                left:
+                  {}
+                left2:
+                  {}
+                right:
+                  {}
+                right2:
+                  {}
+                stick:
+                  camera:
+                    {}
+                zed_center:
+                  zed_left_camera:
+                    zed_depth_camera:
+                      {}
+                  zed_right_camera:
+                    {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Class: rviz/Marker
       Enabled: true
       Marker Topic: visualization_marker
       Name: Marker
       Namespaces:
-        {}
+        "": true
       Queue Size: 100
+      Value: true
+    - Alpha: 0.699999988
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic: /camera/rtabmap/grid_map
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.00999999978
+      Style: Flat Squares
+      Topic: /camera/rtabmap/cloud_map
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
       Value: true
   Enabled: true
   Global Options:
@@ -184,7 +272,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.21720243
+      Distance: 3.55133772
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
@@ -199,10 +287,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.455202132
+      Pitch: 0.699796498
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.763611913
+      Yaw: 0.143186748
     Saved: ~
 Window Geometry:
   Displays:
