@@ -4,7 +4,7 @@
   <arg name="rvizconfig" default="$(find model)/rviz/urdf.rviz" />
 
   <!--<param name="robot_description" command="cat $(find gui_robot_arm)/urdf/roverCool.urdf" /> -->
-  <param name="robot_description" command="$(find xacro)/xacro.py $(find model)/urdf/completeRover.urdf" />
+  <param name="robot_description" command="$(find xacro)/xacro.py $(find model)/urdf/robotArm.urdf" />
   <param name="use_gui" value="$(arg gui)"/>
   
 
