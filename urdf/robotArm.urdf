@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<robot name="rover">
+
+  <material name="gray">
+    <color rgba="0.7 0.7 0.7 5"/>
+  </material>
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 2"/>
+  </material>
+  <material name="chasis">
+    <color rgba="0.4 0 0 2"/>
+  </material>
+  <material name="joint">
+    <color rgba="0.4 0 0 2"/>
+  </material>
+  
+ <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.0001 0.0001 0.0001"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="arm_base">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/arm1.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 -0.43" xyz="-0.015 0.20 0"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+  
+  <link name="elbow">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/arm2.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="-0.03 0.1 -0.04"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="forearm">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/arm3.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="-0.03 0.08875 -0.03"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="wrist">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/UpDown.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 0.06" xyz="-0.03 0.12875 -0.06"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="rotation">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/rotate.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 0.06" xyz="-0.03 0.12875 -0.06"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+   <joint name="base" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="base_link"/>
+    <child link="arm_base"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <joint name="base_to_elbow" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="arm_base"/>
+    <child link="elbow"/>
+    <origin xyz="0 0 0.115"/>
+  </joint>
+
+  <joint name="elbow_to_arm" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="elbow"/>
+    <child link="forearm"/>
+    <origin xyz="0.32 0 0.11"/>
+  </joint>
+
+  <joint name="arm_to_wrist" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="forearm"/>
+    <child link="wrist"/>
+    <origin xyz="0.285 0 0.1"/>
+  </joint>
+
+  <joint name="wrist_to_rotate" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <parent link="wrist"/>
+    <child link="rotation"/>
+    <origin xyz="0 0 0.1"/>
+  </joint>
+
+</robot>
