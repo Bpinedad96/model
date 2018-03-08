@@ -69,14 +69,24 @@
       <geometry>
         <mesh filename="package://model/meshes/rotate.STL" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="1.5708 0 0.06" xyz="-0.03 0.12875 -0.06"/>
+      <origin rpy="1.5708 0 0" xyz="-0.194 0.153 -0.001"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <link name="finger">
+    <visual>
+      <geometry>
+        <mesh filename="package://model/meshes/finger.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="-0.02 0.03 -0.055"/>
       <material name="gray"/>
     </visual>
   </link>
 
    <joint name="base" type="revolute">
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity=".1"/>
     <parent link="base_link"/>
     <child link="arm_base"/>
     <origin xyz="0 0 0"/>
@@ -84,7 +94,7 @@
 
   <joint name="base_to_elbow" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity=".1"/>
     <parent link="arm_base"/>
     <child link="elbow"/>
     <origin xyz="0 0 0.115"/>
@@ -92,7 +102,7 @@
 
   <joint name="elbow_to_arm" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity=".1"/>
     <parent link="elbow"/>
     <child link="forearm"/>
     <origin xyz="0.32 0 0.11"/>
@@ -100,18 +110,26 @@
 
   <joint name="arm_to_wrist" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity=".1"/>
     <parent link="forearm"/>
     <child link="wrist"/>
     <origin xyz="0.285 0 0.1"/>
   </joint>
 
   <joint name="wrist_to_rotate" type="revolute">
-    <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-0.6" upper="0.6" velocity=".1"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity=".1"/>
     <parent link="wrist"/>
     <child link="rotation"/>
-    <origin xyz="0 0 0.1"/>
+    <origin xyz="0 0 0.055"/>
+  </joint>
+
+  <joint name="rotate_to_finger" type="prismatic">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="0" upper="0.08" velocity=".1"/>
+    <parent link="rotation"/>
+    <child link="finger"/>
+    <origin xyz="-0.06 0 0.095"/>
   </joint>
 
 </robot>
